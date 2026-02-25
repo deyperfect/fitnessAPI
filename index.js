@@ -9,6 +9,12 @@ const databaseURL = process.env.MONGODB;
 // Routes
 const userRoutes = require("./routes/userRoutes")
 const workoutRoutes = require("./routes/workoutRoutes")
+
+// Test route for render
+app.get('/', (req, res) => {
+  res.send({ message: "API is working" });
+});
+
 // Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,22 +36,3 @@ if(require.main === module){
 module.exports = { app, mongoose };
 
 
-// REQUIREMENTS
-/* 
-
-workout model:
-name
-duration
-dateAdded
-status
-
-
-register
-email and password
-
-retrieve user detalis
-
-
-users to add, retrieve, update, delete workouts
-
-*/
