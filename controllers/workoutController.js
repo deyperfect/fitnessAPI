@@ -38,15 +38,15 @@ module.exports.getMyWorkouts = (req, res) => {
 
 module.exports.updateWorkout = (req, res) => {
   const { id } = req.params;
-  const { name, duration, status } = req.body;
+  const { name, duration } = req.body;
 
-  if (!name || !duration || !status) {
+  if (!name || !duration) {
     return res.status(400).send({ error: "All fields are required" });
   }
 
   Workout.findByIdAndUpdate(
     id,
-    { name, duration, status },
+    { name, duration },
     { returnDocument: 'after', runValidators: true }
   )
     .then(updatedWorkout => {
@@ -60,8 +60,7 @@ module.exports.updateWorkout = (req, res) => {
         workout: {
           id: updatedWorkout._id,
           name: updatedWorkout.name,
-          duration: updatedWorkout.duration,
-          status: updatedWorkout.status
+          duration: updatedWorkout.duration
         }
       });
     })
