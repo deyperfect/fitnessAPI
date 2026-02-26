@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require('express');
 const mongoose = require("mongoose");
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || 3000;
 const databaseURL = process.env.MONGODB;
 
@@ -12,8 +13,13 @@ const workoutRoutes = require("./routes/workoutRoutes")
 
 // Test route for render
 app.get('/', (req, res) => {
-  res.send({ message: "API is working" });
+  res.send({ message: "API is working!!" });
 });
+
+app.use(cors({
+  origin: ['http://localhost:4173', 'https://fitnessapi-y4fu.onrender.com/'], 
+  credentials: true
+}));
 
 // Body parsing
 app.use(express.json());
