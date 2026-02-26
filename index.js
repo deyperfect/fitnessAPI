@@ -6,6 +6,7 @@ const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 const databaseURL = process.env.MONGODB;
+const clientURL = process.env.CLIENT_URL
 
 // Routes
 const userRoutes = require("./routes/userRoutes")
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({
-  origin: ['http://localhost:4173', 'https://fitnessapi-y4fu.onrender.com/'], 
+  origin: ['http://localhost:4173', clientURL], 
   credentials: true
 }));
 
