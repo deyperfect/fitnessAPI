@@ -1,18 +1,17 @@
 const Workout = require('../models/Workout');
 
 module.exports.addWorkout = (req, res) => {
-	const { name, duration, status } = req.body;
+	const { name, duration } = req.body;
 
-    if (!name || !duration || !status) {
+    if (!name || !duration) {
         return res.status(400).send({
-            message: "All fields are required"
+            message: "Name and duration are required"
         });
     }
 
     let newWorkout = new Workout({
     	name,
     	duration,
-    	status,
     	userId: req.user.id
     });
 
